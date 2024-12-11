@@ -1,0 +1,54 @@
+﻿@using System.Security.Claims
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var isLoggedIn = User.Identity.IsAuthenticated;
+    var isArtist = User.IsInRole("Artist");
+    var isAdmin = User.IsInRole("Admin");
+}
+
+<div class="container">
+    <h1>Artworks</h1>
+
+    @* @if (isLoggedIn && isArtist) *@
+    @* { *@
+    @*     <div class="mb-3"> *@
+    @*         <a href="@Url.Action("Create", "Artworks")" class="btn btn-primary">Add New Artwork</a> *@
+    @*     </div> *@
+    @* } *@
+
+    <div class="row">
+        @foreach (var artwork in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <img src="@artwork.ImageUrl" alt="@artwork.Title" class="card-img-top" style="height: 200px; object-fit: cover;" />
+                    <div class="card-body">
+                        <h5 class="card-title">@artwork.Title</h5>
+                        <p class="card-text">@artwork.Price.ToString("C")</p>
+                        
+                        <!-- View Details Button -->
+                        <a href="@Url.Action("Details", "Artworks", new { id = artwork.ArtworkId })" class="btn btn-info">View Details</a>
+
+                        @if (isLoggedIn && isArtist && artwork.ArtistId.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                        {
+                            <a href="@Url.Action("AddItem", "Cart", new { artworkId = artwork.ArtworkId })" class="btn btn-success">Add to Cart</a>
+                        }
+
+                        @if (isLoggedIn && isArtist && artwork.ArtistId.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                        {
+                            <a href="@Url.Action("Edit", "Artworks", new { id = artwork.ArtworkId })" class="btn btn-warning">Edit</a>
+                        }
+
+                        @if (isLoggedIn && (isAdmin || isArtist))
+                        {
+                            @* <form asp-action="Delete" asp-controller="Artworks" asp-route-id="@artwork.ArtworkId" method="post" style="display: inline;"> *@
+                            @*     <button type="submit" class="btn btn-danger">Delete</button> *@
+                            @* </form> *@
+
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

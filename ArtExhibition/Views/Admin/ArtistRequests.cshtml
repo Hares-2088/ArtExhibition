@@ -1,0 +1,31 @@
+﻿<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>User</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var request in Model)
+    {
+        <tr>
+            <td>@request.User.FullName (@request.User.Email)</td>
+            <td>@request.Reason</td>
+            <td>@request.Status</td>
+            <td>
+                @if (request.Status == "Pending")
+                {
+                    <form method="post" asp-action="ApproveArtistRequest" asp-route-id="@request.Id" class="d-inline">
+                        <button class="btn btn-success">Approve</button>
+                    </form>
+                    <form method="post" asp-action="RejectArtistRequest" asp-route-id="@request.Id" class="d-inline">
+                        <button class="btn btn-danger">Reject</button>
+                    </form>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

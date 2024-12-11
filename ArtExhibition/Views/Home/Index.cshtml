@@ -1,0 +1,63 @@
+﻿@model ArtExhibition.Models.ViewModels.HomeViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <!-- Logo and Welcome Section -->
+    <div class="text-center">
+        <img src="~/images/logo.webp" alt="Gallery Logo" class="img-fluid" style="width: 450px; height: auto;" />
+        <h1 class="display-4 mt-3" style="color: #ffa726;">Welcome to the Virtual Art Gallery</h1>
+        <p class="fs-5 text-muted">Explore the beauty of creativity, meet talented artists, and own a piece of art.</p>
+    </div>
+
+    <!-- Featured Artworks Section -->
+    <div class="mt-5">
+        <h2 class="text-center" style="color: #f48fb1;">Featured Artworks</h2>
+        <div class="row mt-4">
+            @foreach (var artwork in Model.FeaturedArtworks)
+            {
+                <div class="col-md-4">
+                    <div class="card shadow-sm mb-4">
+                        <img src="@artwork.ImageUrl" alt="@artwork.Title" class="card-img-top" style="height: 200px; object-fit: cover;" />
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #495057;">@artwork.Title</h5>
+                            <p class="card-text">@artwork.Price.ToString("C")</p>
+                            <a href="@Url.Action("Details", "Artworks", new { id = artwork.ArtworkId })" class="btn btn-primary w-100">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Meet Our Artists Section -->
+    <div class="mt-5">
+        <h2 class="text-center" style="color: #ffa726;">Meet Our Artists</h2>
+        <div class="row mt-4">
+            @foreach (var artist in Model.Artists)
+            {
+                <div class="col-md-3 text-center">
+                    <div class="card shadow-sm mb-4">
+                        <img src="@(Url.Content(artist.ProfilePictureUrl ?? "~/images/default-artist.jpg"))" alt="@artist.Name" class="rounded-circle mx-auto mt-3" style="width: 100px; height: 100px; object-fit: cover;" />
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #495057;">@artist.Name</h5>
+                            <p class="card-text text-muted">@artist.Genre</p>
+                            <a href="@Url.Action("Details", "Artists", new { id = artist.ArtistId })" class="btn btn-outline-primary btn-sm">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+
+    <!-- Call to Action -->
+    <div class="text-center mt-5">
+        <p class="fs-4" style="color: #495057;">Own a piece of creativity today.</p>
+        <a href="/Artworks" class="btn btn-lg btn-success">Browse Artworks</a>
+    </div>
+</div>

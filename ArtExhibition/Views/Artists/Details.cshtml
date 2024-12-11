@@ -1,0 +1,33 @@
+﻿@model ArtExhibition.Models.Artist
+
+<div class="container">
+    <h1>@Model.Name</h1>
+    <p><strong>Bio:</strong> @Model.Bio</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Website:</strong> <a href="@Model.Website">@Model.Website</a></p>
+    <p><strong>Nationality:</strong> @Model.Nationality</p>
+    <p><strong>Genre:</strong> @Model.Genre</p>
+
+    <h2>Artworks</h2>
+    @if (Model.Artworks.Any())
+    {
+        <div class="row">
+            @foreach (var artwork in Model.Artworks)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <img src="@artwork.ImageUrl" alt="@artwork.Title" class="card-img-top" style="height: 200px; object-fit: cover;" />
+                        <div class="card-body">
+                            <h5 class="card-title">@artwork.Title</h5>
+                            <p class="card-text">@artwork.Price.ToString("C")</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No artworks available for this artist.</p>
+    }
+</div>

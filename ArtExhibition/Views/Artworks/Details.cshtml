@@ -1,0 +1,40 @@
+﻿@model ArtExhibition.Models.Artwork
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var isLoggedIn = User.Identity?.IsAuthenticated ?? false;
+}
+
+
+<div class="container">
+    @if (Model != null)
+    {
+        <h1>@Model.Title</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="@Model.ImageUrl" alt="@Model.Title" class="img-fluid" />
+            </div>
+            <div class="col-md-6">
+                <p><strong>Artist:</strong> @(Model.Artist != null ? Model.Artist.Name : "Unknown Artist")</p>
+                <p><strong>Price:</strong> @Model.Price.ToString("C")</p>
+                <p><strong>Description:</strong> @Model.Description</p>
+
+                @if (isLoggedIn)
+                {
+                    <a asp-action="AddItem" asp-controller="Cart" asp-route-artworkId="@Model.ArtworkId" class="btn btn-success">Add to Cart</a>
+                }
+                else
+                {
+                    <p class="text-danger">Login to purchase this artwork.</p>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <p>The artwork could not be found. Please return to the <a href="/Artworks">artworks page</a>.</p>
+        </div>
+    }
+</div>
+

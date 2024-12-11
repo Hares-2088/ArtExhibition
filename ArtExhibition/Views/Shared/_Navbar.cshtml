@@ -1,0 +1,55 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-footer-gradient">
+    <a class="navbar-brand mx-auto" href="/">🎨 Virtual Art Gallery</a>
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/Artworks">Artworks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Artists">Artists</a>
+            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                @* <li class="nav-item"> *@
+                @*     <a class="nav-link" href="/User/ArtistRequest">Become an Artist</a> *@
+                @* </li> *@
+                <li class="nav-item">
+                    <a class="nav-link" href="/Cart">Cart</a>
+                </li>
+                @if (User.IsInRole("Artist"))
+                {
+                    @* <li class="nav-item"> *@
+                    @*     <a class="nav-link" href="/Rooms/ScheduleRequest">Schedule Room</a> *@
+                    @* </li> *@
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                    @* <li class="nav-item"> *@
+                    @*     <a class="nav-link" href="/Admin/Requests">Manage Requests</a> *@
+                    @* </li> *@
+                }
+                <li class="nav-item">
+                    <form method="post" asp-action="Logout" asp-controller="Account">
+                        <button class="btn btn-link nav-link" type="submit">Logout</button>
+                    </form>
+                </li>
+            }
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="/Account/Login">Login</a>
+                </li>
+            }
+        </ul>
+    </div>
+</nav>

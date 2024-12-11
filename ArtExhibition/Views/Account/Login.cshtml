@@ -1,0 +1,32 @@
+﻿@model ArtExhibition.Models.ViewModels.LoginViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Login</h1>
+    <form asp-action="Login" method="post">
+        <span asp-validation-summary="All" class="text-danger"></span>
+        <div class="form-group">
+            <label for="Username">Username</label>
+            <input type="text" id="Username" asp-for="Username" class="form-control" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" id="Password" asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" id="RememberMe" asp-for="RememberMe" class="form-check-input" />
+            <label class="form-check-label" for="RememberMe">Remember Me</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+    <hr />
+
+    <div class="text-center">
+        <p>Don't have an account? <a asp-action="Register" asp-controller="Account">Register here</a>.</p>
+    </div>
+</div>

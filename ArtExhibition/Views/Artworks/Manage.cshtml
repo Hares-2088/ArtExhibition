@@ -1,0 +1,49 @@
+﻿@model ArtExhibition.Models.Artwork
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var isEdit = Model.ArtworkId > 0; // If ArtworkId exists, it's an edit
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@(isEdit ? "Edit Artwork" : "Create Artwork")</title>
+</head>
+<body>
+<div class="container">
+    <h1>@(isEdit ? "Edit Artwork" : "Create Artwork")</h1>
+
+    <form asp-action="SaveArtwork" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="ArtworkId" />
+
+        <div class="form-group">
+            <label for="Title">Title</label>
+            <input type="text" id="Title" asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Price">Price</label>
+            <input type="number" id="Price" asp-for="Price" class="form-control" step="0.01" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="ImageUrl">Image URL</label>
+            <input type="text" id="ImageUrl" asp-for="ImageUrl" class="form-control" />
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="RoomId">Room</label>
+            <select id="RoomId" asp-for="RoomId" asp-items="ViewBag.Rooms" class="form-control"></select>
+            <span asp-validation-for="RoomId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">@((isEdit) ? "Save Changes" : "Create Artwork")</button>
+    </form>
+</div>
+</body>
+</html>

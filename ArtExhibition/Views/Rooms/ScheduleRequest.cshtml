@@ -1,0 +1,24 @@
+﻿@model ArtExhibition.Models.ViewModels.ScheduleRequestViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Request a Room Schedule</h1>
+    <form asp-action="SubmitRequest" method="post">
+        <div class="form-group">
+            <label for="RoomId">Select Room:</label>
+            <select asp-for="RoomId" class="form-control" asp-items="Model.Rooms"></select>
+        </div>
+        <div class="form-group">
+            <label for="StartDate">Start Date:</label>
+            <input asp-for="StartDate" class="form-control" type="date" />
+        </div>
+        <div class="form-group">
+            <label for="EndDate">End Date:</label>
+            <input asp-for="EndDate" class="form-control" type="date" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+    </form>
+</div>

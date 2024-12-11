@@ -1,0 +1,20 @@
+﻿@model ArtExhibition.Models.ArtistRequest
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Request to Become an Artist</h2>
+
+<form asp-action="ArtistRequest" asp-controller="User" asp-area="UserArea" method="post">
+    <span asp-validation-summary="All" class="text-danger"></span>
+    <div class="form-group">
+        <label for="Reason">Why do you want to become an artist on our platform?</label>
+        <textarea id="Reason" asp-for="Reason" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Reason" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Request</button>
+</form>
+
+

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ArtExhibition.Models.Room>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Manage Rooms</h1>
+    <a asp-action="AddRoom" class="btn btn-success mb-3">Add New Room</a>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Capacity</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var room in Model)
+        {
+            <tr>
+                <td>@room.Name</td>
+                <td>@room.Description</td>
+                <td>@room.Capacity</td>
+                <td>
+                    <a asp-action="EditRoom" asp-route-id="@room.RoomId" class="btn btn-primary">Edit</a>
+                    <form asp-action="DeleteRoom" asp-route-id="@room.RoomId" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

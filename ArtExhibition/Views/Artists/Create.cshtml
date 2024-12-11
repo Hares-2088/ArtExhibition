@@ -1,0 +1,43 @@
+﻿@model ArtExhibition.Models.Artist
+
+<div class="container">
+    <h1>Create Artist</h1>
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Bio"></label>
+            <textarea asp-for="Bio" class="form-control"></textarea>
+            <span asp-validation-for="Bio" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" type="email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Website"></label>
+            <input asp-for="Website" class="form-control" />
+            <span asp-validation-for="Website" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ProfilePictureUrl"></label>
+            <input asp-for="ProfilePictureUrl" class="form-control" />
+            <span asp-validation-for="ProfilePictureUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Nationality"></label>
+            <input asp-for="Nationality" class="form-control" />
+            <span asp-validation-for="Nationality" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Genre"></label>
+            <input asp-for="Genre" class="form-control" />
+            <span asp-validation-for="Genre" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>

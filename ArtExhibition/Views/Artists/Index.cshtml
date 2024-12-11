@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Artists</h1>
+    <div class="row">
+        @foreach (var artist in Model)
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="@artist.ProfilePictureUrl" alt="@artist.Name" class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="card-title">@artist.Name</h5>
+                        <p class="card-text">@artist.Bio</p>
+                        <a href="@Url.Action("Details", "Artists", new { id = artist.ArtistId })" class="btn btn-primary">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

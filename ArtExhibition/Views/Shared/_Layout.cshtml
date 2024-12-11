@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Virtual Art Gallery</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        /* Layout Styles */
+        html, body {
+            height: 100%; /* Full viewport height */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(120deg, #f8f9fa, #ffffff); /* Light gradient background */
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            flex: 1; /* Expands the container to fill available space */
+        }
+
+        /* Navbar Styling */
+        .navbar-dark.bg-footer-gradient {
+            background: linear-gradient(45deg, #343a40, #495057); /* Consistent gradient with footer */
+        }
+
+        .navbar-dark .nav-link,
+        .navbar-dark .navbar-brand {
+            color: #fff !important; /* White text for navbar */
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-dark .nav-link:hover {
+            color: #ffc107; /* Highlight on hover */
+        }
+
+        .navbar-brand {
+            font-size: 1.6rem;
+        }
+
+        /* Footer Styling */
+        .footer-custom {
+            background: linear-gradient(45deg, #343a40, #495057); /* Matching gradient */
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .footer-custom a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-custom a:hover {
+            text-decoration: underline;
+            color: #ffc107; /* Hover color for footer links */
+        }
+
+        /* General Link Styling */
+        a {
+            color: #495057; /* Default link color */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #ffc107; /* Highlight on hover */
+        }
+
+        /* Utility Classes */
+        .btn-primary {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #f48fb1;
+            border-color: #f48fb1;
+        }
+    </style>
+</head>
+<body>
+<header>
+    @await Html.PartialAsync("_Navbar")
+</header>
+<div class="container mt-4">
+    @RenderBody()
+</div>
+<footer class="footer footer-custom">
+    <div class="container">
+        @await Html.PartialAsync("_Footer")
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@3.2.12/dist/jquery.validate.unobtrusive.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js"></script>
+@RenderSection("Scripts", required: false)
+</body>
+</html>

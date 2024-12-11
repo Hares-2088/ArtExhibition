@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ArtExhibition.Models.Exhibition>
+
+<div class="container mt-5">
+    <h1 class="text-center">Exhibitions</h1>
+    <div class="row">
+        @foreach (var exhibition in Model)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@exhibition.Title</h5>
+                        <p class="card-text"><strong>Date:</strong> @exhibition.StartDate.ToString("MMMM dd, yyyy") - @exhibition.EndDate.ToString("MMMM dd, yyyy")</p>
+                        <p class="card-text"><strong>Room:</strong> @exhibition.Room.Name</p>
+                        <a href="/Exhibition/Details/@exhibition.ExhibitionId" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
